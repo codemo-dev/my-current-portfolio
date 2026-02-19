@@ -1,58 +1,58 @@
+let nav = document.querySelector("header nav");
 let menu = document.getElementById("my-menu");
-let icon = document.getElementsByClassName("menu")[0];
+let icon = document.querySelector(".menu");
 
-icon.onclick = function(e) {
-    e.stopPropagation();
+icon.addEventListener("click", () => {
+    nav.classList.toggle("show");
     menu.classList.toggle("show");
-}
-
-document.querySelectorAll('#my-menu a').forEach(link => {
-    link.onclick = () => {
-        menu.classList.remove("show");
-    };
-});
-
-document.onclick = function (e) {
-    if (!menu.contains(e.target) && !icon.contains(e.target)) {
-        menu.classList.remove("show");
-    }
-};
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
+    icon.classList.toggle("show");
+    document.body.classList.toggle("no-scroll");
 });
 
 // === Contact Form Handler ===
 function sendEmail() {
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const subject = document.getElementById("subject").value.trim();
-  const message = document.getElementById("message").value.trim();
+    // Get form elements
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const subjectInput = document.getElementById('subject');
+    const messageInput = document.getElementById('message');
 
-  if (!name || !email || !message) {
-    alert("Please fill in your name, email, and message.");
-    return;
-  }
+    // Get trimmed values
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const subject = subjectInput.value.trim();
+    const message = messageInput.value.trim();
 
-  const mailtoLink = `mailto:codemo.devx@gmail.com?subject=${encodeURIComponent(subject || "Portfolio Inquiry")}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    // Validation: Check required fields
+    if (!name || !email || !message) {
+        alert("Please fill in your name, email, and message.");
+        return;
+    }
 
-  window.location.href = mailtoLink;
+    // Validation: Email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
 
-  // Show success message
-  const successEl = document.getElementById("form-success");
-  successEl.style.display = "block";
+    // Show success message BEFORE redirect
+    const successEl = document.getElementById("form-success");
+    successEl.style.display = "block";
 
-  // clear form
-  document.getElementById("name").value = "";
-  document.getElementById("email").value = "";
-  document.getElementById("subject").value = "";
-  document.getElementById("message").value = "";
+    // Build mailto link
+    const mailtoLink = `mailto:codemo.devx@gmail.com?subject=${encodeURIComponent(
+        subject || "Portfolio Inquiry"
+    )}&body=${encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\n${message}`
+    )}`;
+
+    // Clear form
+    nameInput.value = "";
+    emailInput.value = "";
+    subjectInput.value = "";
+    messageInput.value = "";
+
+    // Redirect to mailto
+    window.location.href = mailtoLink;
 }
