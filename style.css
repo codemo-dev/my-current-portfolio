@@ -40,7 +40,8 @@ header .container {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-left: 100px;
   padding-right: 100px;
   position: fixed;
@@ -121,7 +122,6 @@ header .container .contact {
   z-index: 999;
   height: fit-content;
   padding: 10px 10px;
-  align-self: flex-end;
 }
 
 header .container .contact a {
@@ -172,8 +172,21 @@ header .container .contact i {
 .heroPage .container .text h2 span {
   color: var(--main-color);
   font-weight: 900;
-  text-shadow: var(--main-color) 1px 1px 2px, #444 0px 0px 1px;
+  text-shadow:
+    var(--main-color) 1px 1px 2px,
+    #444 0px 0px 1px;
   font-size: 28px;
+}
+
+.heroPage .container .text h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.8;
+  margin-top: 15px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .heroPage .container .btns {
@@ -1328,11 +1341,11 @@ footer .container {
 @media (max-width: 480px) {
   /* Header */
   header .container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 20px;
     height: 65px;
+    display: flex;
     align-items: center;
-    padding-top: 0;
+    justify-content: space-between;
   }
 
   header .container .logo h1 {
@@ -1343,38 +1356,42 @@ footer .container {
     font-size: 17px;
   }
 
+  /* إخفاء الناف من التدفق الطبيعي كليًا */
+  header .container nav {
+    display: none;
+  }
+
+  /* إظهار أيقونة الهامبرغر في اليمين */
   header .container .menu {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 1001;
+    padding: 5px;
+    margin-left: auto;
   }
 
   header .container .menu i {
-    font-size: 24px;
-  }
-
-  header .container nav {
-    position: static;
-    flex: unset;
+    font-size: 26px;
+    color: #333;
   }
 
   header .container nav ul {
-    background-color: rgba(20, 25, 25, 0.92);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.15);
-    border-radius: 16px;
+    background-color: #fff;
     position: fixed;
-    top: 75px;
-    right: 15px;
-    left: 15px;
-    padding: 12px 0;
+    top: 65px;
+    right: 0;
+    left: 0;
+    padding: 8px 0;
     display: none;
     flex-direction: column;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    gap: 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    z-index: 999;
   }
 
   header .container nav ul.show {
@@ -1382,23 +1399,30 @@ footer .container {
   }
 
   header .container nav ul li {
-    padding: 4px 0;
-    text-align: center;
+    padding: 0;
+    text-align: left;
     width: 100%;
   }
 
   header .container nav ul li a {
-    color: #e0f7ff;
+    color: #333;
     font-size: 15px;
+    font-weight: 600;
     display: block;
-    padding: 10px 20px;
-    transition: color 0.3s ease, background 0.3s ease;
-    border-radius: 8px;
+    padding: 13px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  header .container nav ul li:last-child a {
+    border-bottom: none;
   }
 
   header .container nav ul li a:hover {
     color: aqua;
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(0, 229, 255, 0.06);
   }
 
   header .container .contact {
@@ -1629,7 +1653,7 @@ footer .container {
 
   .project-info p {
     font-size: 14px;
-    min-height: unset;
+    min-height: auto;
   }
 
   .project-link {
@@ -1723,11 +1747,16 @@ footer .container {
 @media (min-width: 481px) and (max-width: 767px) {
   /* Header */
   header .container {
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 0;
+    padding: 0 25px;
     height: 70px;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  /* إخفاء الناف من التدفق الطبيعي كليًا */
+  header .container nav {
+    display: none;
   }
 
   header .container .menu {
@@ -1736,59 +1765,73 @@ footer .container {
     justify-content: center;
     cursor: pointer;
     z-index: 1001;
+    padding: 5px;
+    margin-left: auto;
   }
 
   header .container .menu i {
     font-size: 26px;
+    color: #333;
   }
 
-  header .container nav {
-    position: static;
-    flex: unset;
+  header .container nav.open {
+    display: block;
   }
 
   header .container nav ul {
-    background-color: rgba(20, 25, 25, 0.92);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 229, 255, 0.15);
-    border-radius: 16px;
+    background-color: #fff;
     position: fixed;
-    top: 80px;
-    right: 20px;
-    padding: 12px 0;
+    top: 70px;
+    right: 0;
+    left: 0;
+    padding: 8px 0;
     display: none;
     flex-direction: column;
-    min-width: 200px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    gap: 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    z-index: 999;
   }
 
   header .container nav ul.show {
     display: flex;
+    z-index: 1001;
   }
 
   header .container nav ul li {
-    padding: 4px 0;
-    text-align: center;
+    padding: 0;
+    text-align: left;
   }
 
   header .container nav ul li a {
-    color: #e0f7ff;
+    color: #333;
     font-size: 15px;
+    font-weight: 600;
     display: block;
-    padding: 10px 24px;
-    transition: color 0.3s ease, background 0.3s ease;
-    border-radius: 8px;
+    padding: 13px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  header .container nav ul li:last-child a {
+    border-bottom: none;
   }
 
   header .container nav ul li a:hover {
     color: aqua;
-    background: rgba(0, 229, 255, 0.1);
+    background: rgba(0, 229, 255, 0.06);
   }
 
   header .container .contact {
     display: none;
+  }
+
+  header .container nav ul li {
+    display: block;
   }
 
   header .container nav ul li.hide {
