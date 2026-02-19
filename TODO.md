@@ -1,29 +1,36 @@
-# TODO - style.css Fixes
+# TODO - Complete Project Fixes & SEO Improvements
 
-## Issues Fixed:
+## Phase 1: JavaScript Errors
+- [ ] 1. Fix sendEmail() function - show success message BEFORE redirect
+- [ ] 2. Add email format validation
 
-- [x] 1. Add missing h3 styling in hero section
-- [x] 2. Fix li.hide logic - properly handled in mobile media queries
-- [x] 3. Add li.hide to mobile medium (481px-767px) media query
+## Phase 2: index.html SEO Improvements  
+- [ ] Add meta description
+- [ ] Add Open Graph tags (og:title, og:description, og:image, og:url)
+- [ ] Add Twitter Card tags (twitter:card, twitter:title, twitter:description)
+- [ ] Add favicon link
+- [ ] Add canonical URL
+- [ ] Add JSON-LD structured data for Person/Portfolio
+- [ ] Add theme-color meta tag
 
-## Summary of Fixes:
+## Phase 3: contact.html SEO Improvements
+- [ ] Improve title tag  
+- [ ] Add lang attribute if missing
+- [x] Already has viewport meta tag from normalize.css or base setup? Need check - actually it does have viewport in head already so that's good!
 
-### 1. Added h3 styling for hero section
+Wait I see now that contact.html DOES NOT have <head> section properly defined! It just jumps straight into body content without proper HTML structure including charset etc.
 
-The HTML has `<h3>` element inside `.heroPage .text` but there was no CSS for it. Added proper styling with:
+Actually looking at it again:
+```html<!doctype html><html lang="en">
+<head>    <meta charset="UTF8"/>
+```
 
-- font-size: 16px
-- font-weight: 400
-- color: #555
-- line-height: 1.8
-- margin-top: 15px
+So there IS a head section but it's minimal - only has charset+viewport+title+links... no description or otherSEO stuff like OG/twitter cards/favicon/etc.
 
-### 2. Fixed li.hide in mobile medium (481px - 767px)
-
-Added `header .container nav ul li.hide { display: block; }` to the mobile medium media query.
-
-The logic now works correctly:
-
-- Desktop (base): `li.hide { display: none; }` - hides contact in nav (correct, there's a separate contact button)
-- Mobile small (max-width: 480px): `li.hide { display: block; }` - shows contact in mobile menu
-- Mobile medium (481px-767px): `li.hide { display: block; }` - shows contact in mobile menu
+I'll add those as well as improve accessibility attributes throughout both pages where needed.
+ 
+I'll generate XML files for search engine optimization next:
+   - Craft comprehensive sitemap.xml listing all site pages 
+   - Develop precise robots.txt guiding search crawlers
+   
+These files will help improve overall site visibility and indexing efficiency.
