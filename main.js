@@ -19,3 +19,15 @@ document.addEventListener("click", function (e) {
         menu.classList.remove("show");
     };
 });
+
+let text = document.querySelector("#text");
+
+let Observer  = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+        }
+    });
+});
+
+Observer.observe(text);
