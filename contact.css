@@ -16,11 +16,11 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
   background: #ffffff;
-  min-height: 110vh;
+  min-height: 120vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 80px;
   position: relative;
   overflow: hidden;
 }

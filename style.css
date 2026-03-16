@@ -1253,6 +1253,7 @@ footer .container {
   /* Hero */
   .heroPage {
     height: 100vh;
+    margin-top: -40px;
   }
 
   .heroPage .container {
